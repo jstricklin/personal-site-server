@@ -3,18 +3,17 @@ const app = express()
 const morgan = require('morgan')
 const port = process.env.PORT || 3000
 const nm = require('./nodemailer.js')
+const formidable = require('express-formidable')
 
-// app.use(require('body-parser').json());
-// app.use(express.urlencoded())
 app.use(morgan('combined'))
+app.use(formidable())
 
 app.get('/', (req, res, next) => {
     next({ error: 'Thanks connecting! An email operator will assist you on connection to a proper route.'})
 })
 
 app.post('/contact', (req, res, next) => {
-    console.log(req.body)
-    // nm.sendMail()
+    nm.sendMail(req.fields)
     res.json({ message: 'sending mail...?' })
 })
 
