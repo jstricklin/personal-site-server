@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer')
 const dotenv = require('dotenv').config()
 
-const sendMail = (params) => {
-    console.log('mailing...?')
+const sendMail = (data) => {
+    console.log('mailing...?', data)
     // create test account below for testing
     nodemailer.createTestAccount((err, account) => {
         let transporter = nodemailer.createTransport({
@@ -18,8 +18,8 @@ const sendMail = (params) => {
         let mailOptions = {
             from: "'Portfolio Site Contact' <jose@jstricklin.com>", //sender
             to: process.env.MY_ADDY, //list receivers
-            subject: 'this is a subject!',
-            text: 'this is test content. way to go, dawg.'
+            subject: `Personal Site: ${data.name} contacted you!`,
+            text: `${data.message} -- ${data.email}`
         }
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
