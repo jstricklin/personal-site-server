@@ -16,7 +16,7 @@ const sendMail = (data) => {
         })
         // set up email data below
         let mailOptions = {
-            from: "'Portfolio Site Contact' <jose@jstricklin.com>", //sender
+            from: `Personal Site: ${data.name},  <${data.email}>`, //sender
             to: process.env.MY_ADDY, //list receivers
             subject: `Personal Site: ${data.name} contacted you!`,
             text: `${data.message} -- ${data.email}`
