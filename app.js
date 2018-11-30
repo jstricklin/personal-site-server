@@ -11,8 +11,12 @@ app.use(formidable())
 app.get('/', (req, res, next) => {
     next({ error: 'Thanks connecting! An email operator will assist you on connection to a proper route.'})
 })
-
+app.get('/contact', (req, res, next) => {
+    next({ error: "Wait a sec, how did you GET in here?!" , status: 405 })
+})
 app.post('/contact', (req, res, next) => {
+    console.log(req.fields)
+    if (!req.fields) next({ error: "Where's my data at?" })
     nm.sendMail(req.fields)
     res.json({ message: 'sending mail...?' })
 })
