@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer')
 const dotenv = require('dotenv').config()
 
 const sendMail = (data) => {
-    console.log('mailing...?', data)
     // create test account below for testing
     nodemailer.createTestAccount((err, account) => {
         let transporter = nodemailer.createTransport({
