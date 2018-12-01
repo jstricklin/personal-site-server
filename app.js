@@ -22,7 +22,7 @@ app.post('/contact', (req, res, next) => {
     if (!req.body) next({ error: "Where's my data at?" })
     else {
         nm.sendMail(req.body)
-            .then(res.json({ message: 'sending mail...?' }))
+            .then(response => res.json({ message: 'sending mail...?' }))
     }
 })
 
